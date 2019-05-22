@@ -1,0 +1,6 @@
+<!-- <view bind:tap="onTap" class='tag-class container'>  -->
+<view bind:tap="onTap" class=' container'> 
+<!-- 外部样式会覆盖内部样式 -->
+  <text>{{text}}</text>
+  <slot class="after" name="after"></slot>
+</view>

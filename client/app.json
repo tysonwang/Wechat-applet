@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "view/index/index",
+    "view/book/index",
+    "view/bookdetail/index",
+    "view/my/index",
+    "view/about/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "小程序起步",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "view/index/index",
+        "text": "",
+        "iconPath": "public/images/tabBar/book.png",
+        "selectedIconPath": "public/images/tabBar/book@highlight.png"
+      },
+      {
+        "pagePath": "view/book/index",
+        "text": "",
+        "iconPath": "public/images/tabBar/classic.png",
+        "selectedIconPath": "public/images/tabBar/classic@highlight.png"
+      },
+      {
+        "pagePath": "view/my/index",
+        "text": "",
+        "iconPath": "public/images/tabBar/my.png",
+        "selectedIconPath": "public/images/tabBar/my@highlight.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "requiredBackgroundModes": [
+    "audio"
+  ]
+}

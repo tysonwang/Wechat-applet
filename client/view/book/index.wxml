@@ -1,0 +1,30 @@
+<view class='container' wx:if='{{!searching}}'>
+  <view class='header'>
+    <view class='box' bindtap='searchbook'>
+      <image src='/public/images/books/search.png'></image>
+      <text>搜索书籍</text>
+    </view>
+  </view>
+  <view class='sub-container'>
+    <image class='head-img' src='/public/images/books/quality.png'></image>
+    <view class="books-container">
+      <block wx:for='{{books}}' wx:key='item' wx:for-index="index" wx:for-item="item">
+        <v-book book='{{item}}' />
+      </block>
+    </view>
+  </view>
+</view>
+
+<v-search wx:else bindcancel = "{{cancel}}"> </v-search>
+
+
+
+<!-- 列表循环1 -->
+<!-- <block wx:for='{{book}}' wx:key='item' wx:for-index="index" wx:for-item="item">
+<v-book  book='{{item}}'/>
+</block> -->
+<!-- 列表循环2 -->
+<!-- <book wx:for='{{books}}' book='{{item}}' /> 这种方式也是可以的 只是不够明朗 -->
+<!-- 关于循环中的wx:key的说明 如果循环体是object 并且不重复 那么数字或字符串
+如果本身循环体本身是数字数组或字符串数组 wx:key='*this'
+  -->

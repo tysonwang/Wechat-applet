@@ -1,0 +1,17 @@
+<wxs src='../../util/filter.wxs' module='util' />
+<view class='page'>
+  <view wx:if="{{isInited}}" class='container'>
+    <view>
+      <view class='header'>
+        <v-epsoide class='epsoide' index='{{classic.index}}'></v-epsoide>
+        <v-like class='like' islike="{{util.islike(classic.like_status)}}" count="{{classic.fav_nums}}" bindlike='onlike'></v-like>
+      </view>
+      <v-movie wx:if='{{classic.index==3}}' img="{{classic.image}}" content="{{classic.content}}"></v-movie>
+      <v-music src='{{classic.url}}' title='{{classic.title}}'  wx:if='{{classic.index==2}}' img="{{classic.image}}" content="{{classic.content}}"></v-music>
+      <v-poem wx:if='{{classic.index==1}}' img="{{classic.image}}" content="{{classic.content}}"></v-poem>
+
+    </view>
+    <v-nav class='nav' bindprev='prev' bindnext='next'  title='{{classic.title}}' first='{{first}}'last ='{{last}}' ></v-nav>
+  </view>
+
+</view>

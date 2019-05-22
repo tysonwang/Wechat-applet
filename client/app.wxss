@@ -1,0 +1,13 @@
+/**app.wxss**/
+/* 自定义组件只能继承部分全局样式 比如color,font-size等  */
+/* 非组件类可以继承全局的样式 */
+page{
+  font-size: 24rpx;
+  height: 100%;
+}
+.love{
+  width: 32rpx;
+  height: 28rpx;
+}
+ 
+

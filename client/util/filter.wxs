@@ -1,0 +1,232 @@
+//这里无法使用es6语法
+var omit = function (text, length) {
+  if (!text) {
+    return ''
+  }
+  console.log(text.title)
+  var short = text.title.substring(0, length)
+  console.log(short)
+  return short + '...'
+}
+var moneyFormat = function (x) {
+  if (!x) {
+    return;
+  }
+  var f = parseFloat(x);
+  if (isNaN(f)) {
+    return 0.00;
+  }
+  var f = Math.round(x * 100) / 100;
+  var s = f.toString();
+  var rs = s.indexOf('.');
+  if (rs < 0) {
+    rs = s.length;
+    s += '.';
+  }
+  while (s.length <= rs + 2) {
+    s += '0';
+  }
+  return s;
+}
+
+var getAllMoneyFormat = function (money, count) {
+  var tempmoeny = parseFloat(money);
+  var tempcount = parseFloat(count);
+  var allCount = tempmoeny * tempcount;
+  console.log("allCount", allCount);
+  return moneyFormat(allCount);
+
+}
+
+var idCardLength = function (content, num) {
+  if (content) {
+    if (content.length > 0 && content.length > num) {
+      return changeStr(content, num);
+    } else {
+      return content;
+    }
+  } else {
+    return '号码为空'
+  }
+
+}
+var changeStr = function (str, sliceLength) {
+  var symbols = '*';
+  var resultStr = '';
+  var middleLength = str.length - sliceLength;
+  for (var i = 0; i < middleLength; i++) {
+    resultStr += symbols;
+  }
+  return str.slice(0, sliceLength / 2) + resultStr + str.slice(-sliceLength / 2)
+}
+
+
+var dateFormat = function (val, bol) {
+  var vals = parseInt(val);
+  var d = getDate(vals);
+  var month = d.getMonth() + 1;
+
+  function changed(val) {
+    if (val < 10) {
+      val = '0' + val;
+    }
+    return val;
+  }
+  date = (d.getFullYear()) + "-" + changed(month) + "-" + changed(d.getDate()) + " " + changed(d.getHours()) + ":" + changed(d.getMinutes()) + ":" + changed(d.getSeconds());
+  console.log('date', date);
+  if (bol) {
+    date = date.substring(0, 10)
+  }
+  return date;
+}
+var objToString = function (obj) {
+  return JSON.stringify(obj);
+}
+var payType = function (obj) {
+  switch (obj) {
+    case "wechatMP":
+      return '微信支付';
+    default:
+      return '一卡通支付';
+  }
+
+}
+var getid = function (str) {
+  // console.log("str", str);
+  console.log("str", str);
+  // if(str){
+  //   console.log('sssssssssssssss',str.substr(0,8)); 
+  //   return str.substr(0, 8) + '...';
+  // } else {
+  //   return '空'
+  // }
+
+  return str.substr(0, 8) + '...';
+}
+
+
+var _date2week = function (val) {
+  console.log('val', typeof val)
+  var str = '';
+  var weekDayList = ['日', '一', '二', '三', '四', '五', '六'];
+  var dateIndex = getDate(val).getDay();
+  return weekDayList[dateIndex];
+}
+
+var _subtype2str = function (val) {
+  if (val) {
+    return '预约'
+  } else {
+    return '无号'
+  }
+}
+var substrtime = function (val) {
+  return val.substring(5);
+}
+var statusStr = function (val, num) {
+  //num 1预约，2挂号
+  var str = '';
+  if (num == 1) {
+    switch (val) {
+      case '0':
+        str = '待挂号';
+        break;
+      case '1':
+        str = '待就诊';
+        break;
+      case '2':
+        str = '已取号';
+        break;
+      case '3':
+        str = '已取消';
+        break;
+      case '4':
+        str = '已爽约';
+        break;
+    }
+  }
+  if (num == 2) {
+    switch (val) {
+      case '0':
+        // case '1':
+        str = '已就诊';
+        break;
+      case '1':
+        str = '待支付';
+        break;
+      case '2':
+        str = '待就诊';
+        break;
+      case '3':
+        str = '挂号取消';
+        break;
+    }
+  }
+  return str;
+}
+var decode = function (val) {
+  return decodeURIComponent(val);
+}
+var cancelType = function (val) {
+  var str = '';
+  switch (val) {
+    case '1':
+      // case '1':
+      str = '支付超时，系统自动取消';
+      break;
+    case '2':
+      str = '用户自主取消';
+      break;
+    case '3':
+      str = '停诊取消';
+      break;
+  }
+  return str;
+}
+var islike = function(val){
+switch(val){
+  case 1:
+  return true;
+  case 0:
+  return false;
+ }
+}
+var limit = function (array, length) {
+  console.log("array",array);
+  return array.slice(0, length)
+}
+
+
+
+var format = function (text) {
+  //数据初始化 和更新 会造成运行两次
+  console.log("text",text);
+  if (!text) {
+    return
+  }
+  var reg = getRegExp('\\\\n', 'g')
+  var text = text.replace(reg, '\n&nbsp;&nbsp;&nbsp;&nbsp;')
+  console.log("text",text);
+  return text
+}
+
+module.exports = {
+  omit: omit,
+  moneyFormat: moneyFormat,
+  idCardLength: idCardLength,
+  changeStr: changeStr,
+  dateFormat: dateFormat,
+  objToString: objToString,
+  getAllMoneyFormat: getAllMoneyFormat,
+  payType: payType,
+  getid: getid,
+  _date2week: _date2week,
+  _subtype2str: _subtype2str,
+  substrtime: substrtime,
+  decode: decode,
+  statusStr: statusStr,
+  cancelType: cancelType,
+  islike: islike,
+  limit:limit,
+  format:format
+}
